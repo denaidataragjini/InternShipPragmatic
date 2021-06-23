@@ -49,15 +49,17 @@ namespace Ex1
             double secondClassAverage = 0.0;
             int firstClassCounter = 0;
             int secondClassCounter = 0;
-
+            bool hasValidationErrors = false;
             firstClassName = students[0].className; //marrim emrin e klases se pare
 
             //Duke qene se te dhenat i vendosa vete ne liste bejme nje kontroll si fillim per inputet:
+            //Jam ne dijeni qe keto kontrolle duhet te behen ne momentin e marrjes se te dhenave nga perdoruesi, mirepo edhe pse te dhenat i vendosa vete ne liste, po bej nje kontroll te vlerave te tyre:
             foreach (Student student in students)
             {
                 if (student.name.Length > 15 || student.surname.Length > 15)
                 {
                     Console.WriteLine("Your Name length is too long, please update the information");
+                    hasValidationErrors = true;
                     break;
                 }
                 else
@@ -66,11 +68,13 @@ namespace Ex1
 
                 {
                     Console.WriteLine("Your student class name must contain only 3 charachters, please update the information");
+                        hasValidationErrors = true;
                     break;
                 }
                 if (student.grade < 1 || student.grade > 100)
                 {
                     Console.WriteLine("Your student grade must be 1-100, please update the information");
+                        hasValidationErrors = true;
                     break;
                 }
                 else
@@ -94,7 +98,9 @@ namespace Ex1
                 }
             
             }
-            //Ne rast senuk kemi asnje gabim ne vendosjen e te dhenave atehere do  te vazhdojme me gjetjen e Mesatares
+            //Ne rast se nuk kemi asnje gabim ne vendosjen e te dhenave atehere do  te vazhdojme me gjetjen e Mesatares
+            if(hasValidationErrors == false){
+                
             firstClassAverage = Convert.ToDouble(firstClassGradesSum) / firstClassCounter;
             secondClassAverage = Convert.ToDouble(secondClassGradesSum) / secondClassCounter;
 
@@ -108,7 +114,7 @@ namespace Ex1
                 Console.WriteLine("{0} {1}", secondClassName, secondClassAverage);
 
             }
-
+            }
             Console.ReadKey();
         }
     }
